@@ -51,14 +51,14 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Portions Paid</div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{percentage}}%</div>
                                         </div>
                                         <div class="col">
                                             <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{percentage}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -197,17 +197,19 @@
                                 <thead>
                                     <tr>
                                         <th>Portion</th>
+                                        <th>Due Date</th>
                                         <th>Paid</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     
-                                    <tr ng-repeat='portion in portions'>
+                                    <tr ng-repeat='portion in date'>
                                         <td>Portion {{portion.portion}} </td>
+                                        <td>{{portion.date}}</td>
                                         <td ng-if="portion.paid === 'true'">Paid!</td>
                                         <td ng-if="portion.paid === 'false'">Not paid!</td>
-                                        <td><button class='btn btn-primary btn-sm' ng-if="portion.paid === 'false'" ng-click='confirmPayment(portion.portion)'>Confirm payment</button> <button class='btn btn-danger btn-sm' ng-if="portion.paid === 'true'" ng-click='cancelPayment(portion.portion)'>Cancel payment</button></td>
+                                        <td><button class='btn btn-primary btn-sm' ng-if="portion.paid === 'false'" ng-click='confirmPayment(portion.portion)'>Confirm payment</button> <button class='btn btn-danger btn-sm' ng-if="portion.paid === 'true'" ng-click='cancelPayment()'>Cancel payment</button></td>
                                     </tr>
                                 </tbody>
                             </table>

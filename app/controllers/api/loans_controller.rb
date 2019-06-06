@@ -25,11 +25,11 @@ module Api
       end
     end
 
-    def confirm_payment
+    def confirm_or_cancel_payment
       @paramsToJSON = JSON.parse(params[:_json])
       @update = JSON.generate(@paramsToJSON[0..@paramsToJSON.length - 2])
       @loan = Loan.find(@paramsToJSON[@paramsToJSON.length - 1]['loan_id'])
-      @loan.update(paid: @update)
+      @loan.update(date: @update)
 
       render json: {status: 200, data: @loan}
     end
@@ -51,7 +51,18 @@ module Api
     def total_amount
       @totalAmount = Loan.all.sum {|loan| loan.amount }
       @numberLoans = Loan.all.count
-      render json: { status: 200, totalAmount: @totalAmount, numberLoans: @numberLoans}
+      @portionsPaid = 0.0
+      @totalPortions = 0.0
+      Loan.all.each do |loan|
+        JSON.parse(loan.date).each do |date|
+          if date["paid"] == "true"
+            @portionsPaid += 1
+          end
+          @totalPortions += 1
+        end
+      end
+      @percentageOfPortionsPaid = (@portionsPaid / @totalPortions).round(1) * 100
+      render json: { status: 200, totalAmount: @totalAmount, numberLoans: @numberLoans, percentage: @percentageOfPortionsPaid}
     end
 
     private

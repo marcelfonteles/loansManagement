@@ -15,7 +15,9 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   DashboardService.getTotalAmount().then(function(response) {
     $scope.totalAmount = response.data.totalAmount
     $scope.numberLoans = response.data.numberLoans
+    $scope.percentage = response.data.percentage
   });
+  // Gett
   // Getting customers from service
   this.getCustomers = function() {
     DashboardService.getCustomers().then(function(response) {
@@ -96,10 +98,8 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   };
   // Defining the behavior for confirming or canceling the payment of a portion
   $scope.seeLoan = function(loan) {
-    $log.log(loan)
     $scope.loans = [loan]
-    $scope.portions = JSON.parse(loan.paid)
-    $log.log($scope.portions);
+    $scope.date = JSON.parse(loan.date)
     $scope.isLoanPage = true;
   }
 
@@ -107,23 +107,22 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   $scope.confirmPayment = function(portionNumber) {
     if (window.confirm("Are you sure?")) {
       // Formating the parameters
-      $scope.portions[portionNumber - 1].paid = "true";
-      $scope.sendConfirmation = angular.copy($scope.portions);
+      $scope.date[portionNumber - 1].paid = "true";
+      $scope.sendConfirmation = angular.copy($scope.date);
       $scope.sendConfirmation.push({loan_id: $scope.loans[0].id})
       // Sending formatted parameters
       DashboardService.confirmPayment(JSON.stringify($scope.sendConfirmation)).then(function(response) {
-        $log.log(response.data.data)
+        // $log.log(response.data.data)
       })  
     }
   }
-
   $scope.cancelPayment = function(portionNumber) {
     if (confirm("Are you sure?")) {
-      $scope.portions[portionNumber - 1].paid = "false";
-      $scope.sendConfirmation = angular.copy($scope.portions);
+      $scope.date[portionNumber - 1].paid = "false";
+      $scope.sendConfirmation = angular.copy($scope.date);
       $scope.sendConfirmation.push({loan_id: $scope.loans[0].id})
       // Sending formatted parameters
-      DashboardService.confirmPayment(JSON.stringify($scope.sendConfirmation)).then(function(response) {
+      DashboardService.cancelPayment(JSON.stringify($scope.sendConfirmation)).then(function(response) {
         $log.log(response.data.data)
       }) 
     }

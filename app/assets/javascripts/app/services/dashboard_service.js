@@ -31,6 +31,14 @@ app.service("DashboardService", ["$http", "$log", function($http, $log) {
   }
   // Confirming payment
   this.confirmPayment = function(confirmation) {
-    return $http.post('/api/loans/confirmation', JSON.stringify(confirmation))
+    return $http.post('/api/loans/update/status', JSON.stringify(confirmation))
+  }
+  // Cancelling payment
+  this.cancelPayment = function(cancellation) {
+    return $http.post('/api/loans/update/status', JSON.stringify(cancellation))
+  }
+  // Getting all loans
+  this.getLoans = function() {
+    return $http.get('/api/loans/');
   }
 }])

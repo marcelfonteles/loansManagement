@@ -13,7 +13,7 @@
           'Marta Ribeiro',
           'Juliete',
           'Ramona Marins',
-          'Don Corleone,'
+          'Don Corleone',
           'José Villar']
 
 puts "Apagando o banco...."
@@ -45,21 +45,23 @@ count = 1
 100.times do
   @amount = [500, 100, 150, 1250, 325, 333.33].sample
   @portions = [1,2,3,4,5].sample
-  @paid = '['
+  @paid = ["true", "false"].sample
+  @date = '['
   @count = 1
   @portions.times do
-    @paid = @paid + '{"portion": ' + @count.to_s + ', "paid": "false"}'
+    @dateToString = (DateTime.now + @count.months).strftime('%d/%m/%Y')
+    @date = @date + '{"date": "' + @dateToString + '", "portion": ' + @count.to_s + ', "paid": "' + @paid + '" }'
     if @count != @portions
-      @paid = @paid + ', '
+      @date = @date + ', '
     end
     @count = @count + 1
   end
-  @paid = @paid + ']'
+  @date = @date + ']'
   @customer = Customer.all.sample.id
   Loan.create(store: "Loja #{count}",
               amount: @amount,
               portions: @portions,
-              paid: @paid,
+              date: @date,
               customer_id: @customer
               )
   count += 1

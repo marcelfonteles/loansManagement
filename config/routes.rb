@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :loans, only: [:index, :destroy, :create]
     get 'loans/customer/:customer_id', to: 'loans#customer_loans'
     get 'loans/totalamount', to: 'loans#total_amount'
-    post 'loans/confirmation', to: 'loans#confirm_payment'
+    post 'loans/update/status', to: 'loans#confirm_or_cancel_payment'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
