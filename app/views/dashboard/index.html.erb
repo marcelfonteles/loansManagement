@@ -209,7 +209,7 @@
                                         <td>{{portion.date}}</td>
                                         <td ng-if="portion.paid === 'true'">Paid!</td>
                                         <td ng-if="portion.paid === 'false'">Not paid!</td>
-                                        <td><button class='btn btn-primary btn-sm' ng-if="portion.paid === 'false'" ng-click='confirmPayment(portion.portion)'>Confirm payment</button> <button class='btn btn-danger btn-sm' ng-if="portion.paid === 'true'" ng-click='cancelPayment()'>Cancel payment</button></td>
+                                        <td><button class='btn btn-primary btn-sm' ng-if="portion.paid === 'false'" ng-click='confirmPayment(portion.portion)'>Confirm payment</button> <button class='btn btn-danger btn-sm' ng-if="portion.paid === 'true'" ng-click='cancelPayment(portion.portion)'>Cancel payment</button></td>
                                     </tr>
                                 </tbody>
                             </table>
