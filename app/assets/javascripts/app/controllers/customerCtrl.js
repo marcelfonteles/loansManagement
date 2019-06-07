@@ -23,6 +23,17 @@ app.controller('CustomerCtrl', ["$scope", "$rootScope", "$log", "DashboardServic
 			$scope.wantNewLoan = true
 		}
 	}
+	// Deleting Loan
+	$scope.deleteLoan = function(loan_id) {
+		if (confirm("Are you sure?")) {
+			DashboardService.deleteCustomerLoan(loan_id).then(function(response) {
+				alert("Loan successfully deleted")
+				$scope.loans = $scope.loans.filter(function(loan) {
+					return loan.id !== loan_id
+				})
+			})
+		}
+	}
 
 	// Creating loan of customer
   	$scope.addLoan = function(loan) {
@@ -34,6 +45,10 @@ app.controller('CustomerCtrl', ["$scope", "$rootScope", "$log", "DashboardServic
 	    }, function(response) {
 	      $log.log(response.data.message)
     	})
-
   };
+
+  $scope.seeLoan = function(loan){
+  	$rootScope.pageHandle = 2
+  	$rootScope.loan_id = loan.id
+  }
 }])

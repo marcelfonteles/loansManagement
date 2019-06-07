@@ -17,13 +17,17 @@ app.service("DashboardService", ["$http", "$log", function($http, $log) {
   this.getCustomerLoans = function(customer_id) {
     return $http.get('/api/loans/customer/' + customer_id);
   }
+  // Getting one specific loan
+  this.getLoan = function(loan_id) {
+    return $http.get('/api/loans/' + loan_id)
+  }
   // Deleting one loan from a specific customer
   this.deleteCustomerLoan = function(loan_id) {
     return $http.delete('/api/loans/' + loan_id)
   }
   // Getting the total amount of all loans
   this.getTotalAmount = function() {
-    return $http.get('/api/loans/totalamount')
+    return $http.get('/api/loans/total/amount')
   }
   // Saving new loan on database
   this.addLoan = function(loan) {

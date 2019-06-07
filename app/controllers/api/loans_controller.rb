@@ -4,6 +4,11 @@ module Api
       @loans = Loan.all
     end
 
+    def show
+      @loan = Loan.find(params[:id])
+      render json: {status: 200, data: @loan, message: 'Resquest successfully.'}
+    end
+
     def create
       @loan = Loan.new(loans_params)
       date = '['
