@@ -62,13 +62,14 @@
                             <th>Options</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr ng-repeat='loan in loans'>
                             <td>{{loan.store}}</td>
                             <td>{{loan.amount}}</td>
                             <td>{{loan.portions}}</td>
                             <td>
-                                <button class='btn btn-primary btn-sm' ng-click='seeLoan(loan)'>See Loan</button>
+                                <a href='/#!/customer/{{customer.id}}/loan/{{loan.id}}'><button class='btn btn-primary btn-sm' ng-click='seeLoan(loan)'>See Loan</button></a>
                                 <button class='btn btn-danger btn-sm' ng-click='deleteLoan(loan.id)'>Delete Loan</button>
                             </td>
                         </tr>

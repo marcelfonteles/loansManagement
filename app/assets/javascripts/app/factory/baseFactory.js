@@ -7,7 +7,6 @@ app.factory('BaseFactory', ['$log', '$timeout', function($log, $timeout) {
 	var pageHandle = { 
 						'page': 0 
 					 };
-	$log.log(pageHandle.page)
 	/*******
 	Page Number
 	0 - Index Page

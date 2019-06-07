@@ -5,12 +5,8 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   $scope.app = 'Sistema de Gerenciamento';
   // this variable defines if a form for new customer is showed or not
   $scope.clickedNewCustomerVar = false;
-  // this variable defines if a form for a new loan is showed or not
-  $scope.clickedNewLoanVar = false;
-  // this variable defines if is index page or if it is customer page - the default value shows the index page
-  $scope.isIndex = true;
-  // this variable defines if is a "show loan page" or not
-  $scope.isLoanPage = false;
+  // Setting pageHandle to 0
+  $rootScope.pageHandle = 0;
   
   // Getting the total amount and the number of loan for displaying info in the dashboard
   DashboardService.getTotalAmount().then(function(response) {

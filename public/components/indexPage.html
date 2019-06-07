@@ -105,7 +105,7 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th ng-if='isIndex'>Option</th>
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,8 +113,8 @@
                             <td>{{customer.name}}</td>
                             <td>{{customer.phone}}</td>
                             <td>{{customer.address}}</td>
-                            <td ng-if='isIndex'>
-                                <button class='btn btn-primary btn-sm' ng-click='seeCustomer(customer.id)'>See Customer</button>
+                            <td>
+                                <a href='/#!/customer/{{customer.id}}'><button class='btn btn-primary btn-sm' ng-click='seeCustomer(customer.id)'>See Customer</button></a>
                             </td>
                         </tr>
                     </tbody>

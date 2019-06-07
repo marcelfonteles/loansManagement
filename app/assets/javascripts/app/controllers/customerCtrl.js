@@ -1,10 +1,18 @@
 var app = angular.module('app03');
 
-app.controller('CustomerCtrl', ["$scope", "$rootScope", "$log", "DashboardService", function($scope, $rootScope, $log, DashboardService) {
+app.controller('CustomerCtrl', ["$scope", "$rootScope", "$log", "DashboardService", "$location", function($scope, $rootScope, $log, DashboardService, $location) {
 	// Behavior variables
 	// Variable responsable for hidding/showing New Loan Form
 	$scope.wantNewLoan = true;
-
+	// Setting behavior when refreshing page happens
+	if ($rootScope.customer_id) {
+		// Do nothing
+	} else {
+		var hash = $location.url()
+		$rootScope.customer_id = hash.substr(10, (hash.length - 9))
+		$rootScope.pageHandle = 1
+	}
+	
 	// Getting the customer
 	DashboardService.getCustomer($rootScope.customer_id).then(function(response) {
 		$scope.customer = response.data.data;	

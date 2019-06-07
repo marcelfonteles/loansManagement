@@ -6,6 +6,14 @@ app.config(["$routeProvider", function($routeProvider) {
 			templateUrl: '/components/indexPage.html',
 			controller: 'DashboardCtrl'
 		})
+		.when('/customer/:customer_id', {
+			templateUrl: '/components/customerPage.html',
+			controller: 'CustomerCtrl'
+		})
+		.when('/customer/:customer_id/loan/:loan_id', {
+			templateUrl: '/components/loansPage.html',
+			controller: 'LoanCtrl'
+		})
 		.when('/first', {
 			template: 'Hello World!'
 		})
