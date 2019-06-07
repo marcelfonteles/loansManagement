@@ -17,3 +17,7 @@
 input.form-control {
   margin-bottom: 5px;
 }
+.container-login {
+	width: 40%;
+	margin: auto;
+}
