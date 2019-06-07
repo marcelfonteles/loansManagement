@@ -6,21 +6,27 @@ module Api
 
     def create
       @loan = Loan.new(loans_params)
-      paid = '{'
+      date = '['
       count = 1
       @loan.portions.to_i.times do
-        paid = paid + "portion#{count}: false"
+        @dateToString = (DateTime.now + count.months).strftime('%d/%m/%Y')
+        date = date + '{"date": "' + @dateToString + '", "portion": ' + count.to_s + ', "paid": "false" }'
         if count != @loan.portions.to_i
-          paid = paid + ","
+          date = date + ","
         end
         count += 1
       end
-      paid = paid + '}'
-      @loan.paid = paid
+      date = date + ']'
+      @loan.date = date
+      puts @loan
 
       if @loan.save 
+        puts 'batata'
         render json: { status: 200, data: @loan, message: 'Loan save successfully'}
       else
+        if @loan.errors.any?
+          puts @loan.errors.full_messages
+        end
         render json: { status: 400, message: 'I could not save this loan. Try again another time!'}
       end
     end

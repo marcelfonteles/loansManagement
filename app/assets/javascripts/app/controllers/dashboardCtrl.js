@@ -1,6 +1,6 @@
 var app = angular.module('app03');
 
-app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", function($scope, $log, $http, DashboardService) {
+app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", "$rootScope", function($scope, $log, $http, DashboardService, $rootScope) {
   // this variable do nothing
   $scope.app = 'Sistema de Gerenciamento';
   // this variable defines if a form for new customer is showed or not
@@ -11,30 +11,34 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   $scope.isIndex = true;
   // this variable defines if is a "show loan page" or not
   $scope.isLoanPage = false;
+  
   // Getting the total amount and the number of loan for displaying info in the dashboard
   DashboardService.getTotalAmount().then(function(response) {
     $scope.totalAmount = response.data.totalAmount
     $scope.numberLoans = response.data.numberLoans
     $scope.percentage = response.data.percentage
   });
-  // Gett
+
   // Getting customers from service
   this.getCustomers = function() {
     DashboardService.getCustomers().then(function(response) {
       $scope.customers = response.data.data;
     })
   };
+  
   // Calling the getCustomers
   this.getCustomers();
 
   // Hidding/Showing the new customer form
   $scope.clickedNewCustomer = function() {
+    
     if ( $scope.clickedNewCustomerVar === true) {
       $scope.clickedNewCustomerVar = false;
     } else {
       $scope.clickedNewCustomerVar = true;
     }
   };
+  
   // Sending the new customer to database
   $scope.addCustomer = function(customer){
     DashboardService.addCustomer(customer).then(function(response) {
@@ -44,7 +48,14 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
       $scope.clickedNewCustomerVar = false;
     })
   };
+  
+  // Getting the customer page
+  $scope.seeCustomer = function(customer_id) {
+    $rootScope.pageHandle = 1
+    $rootScope.customer_id = customer_id
+  }
 
+  /*
   // Getting the customer page
   $scope.seeCustomer = function(customer_id) {
     DashboardService.getCustomer(customer_id).then(function(response) {
@@ -70,7 +81,7 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
   };
   // Creating loan of customer
   $scope.addLoan = function(loan) {
-    DashboardService.addLoan(loan);then(function(response) {
+    DashboardService.addLoan(loan).then(function(response) {
       $log.log(response.data.message)
     }, function(response) {
       $log.log(response.data.message)
@@ -127,4 +138,5 @@ app.controller('DashboardCtrl', ["$scope", "$log", "$http", "DashboardService", 
       }) 
     }
   }
+  */
 }])

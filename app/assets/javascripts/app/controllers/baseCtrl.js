@@ -1,6 +1,6 @@
 var app = angular.module('app03');
 
-app.controller('BaseCtrl', ['$scope', '$log', function($scope, $log) {
+app.controller('BaseCtrl', ['$scope', '$log', '$timeout', '$rootScope', function($scope, $log, $timeout, $rootScope) {
 	$scope.app = 'BaseCtrl';
 	/*******************
 	Page Handle
@@ -8,5 +8,11 @@ app.controller('BaseCtrl', ['$scope', '$log', function($scope, $log) {
 	1 - Customer Page
 	2 - Loan of Customer Page
 	********************/
-	$scope.pageHandle = 0 //Index Page
+	$rootScope.pageHandle = 0
 }])
+
+/*
+BaseCtrl - index - includes - variável que decide o include
+
+DashboarCtrl - mudar a variável que decide o include
+*/
