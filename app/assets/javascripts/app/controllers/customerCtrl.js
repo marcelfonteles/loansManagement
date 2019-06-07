@@ -40,8 +40,10 @@ app.controller('CustomerCtrl', ["$scope", "$rootScope", "$log", "DashboardServic
   		loan.customer_id = $scope.customer.id
 	    DashboardService.addLoan(loan).then(function(response) {
 	      $log.log(response.data.message)
+	      $scope.loans.push(response.data.data)
 	      $scope.wantNewLoan = true
     	  delete $scope.loan
+
 	    }, function(response) {
 	      $log.log(response.data.message)
     	})

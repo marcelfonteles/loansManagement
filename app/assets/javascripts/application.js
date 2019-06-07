@@ -14,4 +14,5 @@
 //= require activestorage
 //= require jquery
 //= require angularjs/angular.min
+//= require angular-route/angular-route.min
 //= require_tree .

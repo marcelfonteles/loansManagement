@@ -45,7 +45,7 @@ count = 1
 100.times do
   @amount = [500, 100, 150, 1250, 325, 333.33].sample
   @portions = [1,2,3,4,5].sample
-  @paid = ["true", "false"].sample
+  @paid = ["true", "false", "false"].sample
   @date = '['
   @count = 1
   @portions.times do

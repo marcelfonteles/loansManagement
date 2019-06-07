@@ -8,7 +8,7 @@ app.controller('BaseCtrl', ['$scope', '$log', '$timeout', '$rootScope', function
 	1 - Customer Page
 	2 - Loan of Customer Page
 	********************/
-	$rootScope.pageHandle = 0
+	$rootScope.pageHandle = -1
 }])
 
 /*
