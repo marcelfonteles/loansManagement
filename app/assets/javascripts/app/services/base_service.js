@@ -17,6 +17,9 @@ app.config(["$routeProvider", function($routeProvider) {
 		.when('/first', {
 			template: 'Hello World!'
 		})
+		.when('/profile', {
+			templateUrl: '/components/profilePage.html'
+		})
 		.otherwise({
 			templateUrl:'/components/404.html'
 		})

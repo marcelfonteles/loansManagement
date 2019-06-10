@@ -34,6 +34,7 @@ puts "Populando o banco...."
 
 User.create(email: 'user@user.com', password:'fonteles', name: 'Usuário')
 
+
 count = 1
 9.times do 
   Customer.create(name: @names.sample,
