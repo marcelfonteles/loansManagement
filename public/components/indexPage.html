@@ -76,10 +76,18 @@
         </div>
     </div>
 </div>
-<button class='btn btn-primary shadow-sm btn-sm' ng-if='!clickedNewCustomerVar' ng-click='clickedNewCustomer()'><i class="fas fa-users"> New Customer</i></button>
+<div class='row' ng-show='!clickedNewCustomerVar'>
+    <div class='col-md-4'>
+        <button class='btn btn-primary shadow-sm btn-sm'  ng-click='clickedNewCustomer()'><i class="fas fa-users"> New Customer</i></button>
+    </div>
+    <div class='col-md-4'></div>
+    <div class='col-md-4 float-right'>
+        <input type='text' class='form-control' placeholder='Search for customer...' ng-model='searching'>
+    </div>
+</div>
 <div class='card' ng-if='clickedNewCustomerVar'>
     <div class='card-header'>
-        </i>New Customer
+        New Customer
     </div>
     <div class='card-body'>
         <input type="text" class='form-control col-md-6' placeholder="Name" ng-model='customer.name'>

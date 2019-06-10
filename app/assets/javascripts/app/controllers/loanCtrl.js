@@ -1,24 +1,22 @@
 var app = angular.module('app03');
 
 app.controller('LoanCtrl', ["$scope", "$rootScope", "$log", "DashboardService", "$location", function($scope, $rootScope, $log, DashboardService, $location) {
+	// Original hash
+	// hash = /customer/1/loan/28
+	$scope.hash = $location.url()
+	// Getting the position of the last '/'
+	var lastIndex = $scope.hash.lastIndexOf('/')
+	// back = /customer/1
+	$scope.back = $scope.hash.substr(0, lastIndex-5)
+	
 	// Setting behavior when refreshing page happens
 	if ($rootScope.customer_id) {
 		// Do nothing
 	} else {
-		// Original hash
-		// hash = /customer/1/loan/28
-
-		// Getting the hash
-		var hash = $location.url()
-		// Getting the position of the last '/'
-		var lastIndex = hash.lastIndexOf('/')
 		// Getting the loan ID using the lastIndex
-		$rootScope.loan_id = hash.substr(lastIndex + 1, (hash.length - lastIndex + 1))
-		// Updating the hash to get customer ID
-		// hash = /customer/1
-		hash = hash.substr(0, lastIndex-5)
+		$rootScope.loan_id = $scope.hash.substr(lastIndex + 1, ($scope.hash.length - lastIndex + 1))
 		// Getting the customer ID
-		$rootScope.customer_id = hash.substr(10, (hash.length - 9))
+		$rootScope.customer_id = $scope.back.substr(10, ($scope.back.length - 9))
 		$rootScope.pageHandle = 2
 	}
 	

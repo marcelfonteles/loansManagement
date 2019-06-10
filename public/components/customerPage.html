@@ -28,7 +28,16 @@
 
 <div>
     <hr>
-    <button class='btn btn-primary btn-sm' ng-if='wantNewLoan' ng-click='clickedNewLoan()'>New Loan</button>
+    <div class='row' ng-show='wantNewLoan'>
+        <div class='col-md-4'>
+            <button class='btn btn-primary btn-sm'  ng-click='clickedNewLoan()'>New Loan</button>        
+        </div>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
+            <input type='text' class='form-control' placeholder='Search for loan...' ng-model='searching'>
+        </div>
+    </div>
+    
     <div class='card' ng-if='!wantNewLoan'>
         <div class='card-header'>
             </i>New Loan
@@ -64,7 +73,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat='loan in loans'>
+                        <tr ng-repeat='loan in loans | filter: searching'>
                             <td>{{loan.store}}</td>
                             <td>{{loan.amount}}</td>
                             <td>{{loan.portions}}</td>

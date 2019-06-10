@@ -9,13 +9,14 @@
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 -->
             </div>
-            pageHandle: {{pageHandle}}
+            
             <ng-view></ng-view>
+            <div ng-include="'/components/footer.html'"></div>
             <!--
             <div ng-include="'/components/indexPage.html'" ng-controller='DashboardCtrl' ng-if="pageHandle === 0"></div>
             <div ng-include="'/components/customerPage.html'" ng-controller='CustomerCtrl' ng-if="pageHandle === 1"></div>
             <div ng-include="'/components/loansPage.html'" ng-controller='LoanCtrl' ng-if="pageHandle === 2"></div>
-            <div ng-include="'/components/footer.html'"></div>
+            
             -->
         </div>
     </div>
